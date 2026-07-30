@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المرسلات للاستشارات الهندسية | نجران</title>
+<meta name="description" content="مكتب المرسلات للاستشارات الهندسية - نجران. أعمال المساحة الأرضية، محطات GPS، وتعديل المخططات السكنية. مرخص من الهيئة السعودية للمهندسين.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B2A45;
+    --navy-deep:#071B2E;
+    --steel:#2C6E8C;
+    --sand:#C9A671;
+    --paper:#F6F4EF;
+    --paper-2:#EFEAE0;
+    --ink:#16232E;
+    --ink-soft:#4A5A66;
+    --verified:#2F6F52;
+    --line: rgba(255,255,255,0.14);
+    --radius: 10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans Arabic','Cairo',sans-serif;
+    line-height:1.7;
+  }
+  h1,h2,h3,h4{
+    font-family:'Cairo',sans-serif;
+    margin:0;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    direction:ltr;
+    unicode-bidi:isolate;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .container{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  /* ===== Blueprint grid pattern ===== */
+  .blueprint{
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--navy-deep);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    max-width:1120px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{height:38px; width:auto;}
+  .brand-text{color:#fff;}
+  .brand-text .name{font-weight:800; font-size:16px; display:block;}
+  .brand-text .sub{font-size:11px; color:var(--sand); letter-spacing:.5px;}
+  nav.links{display:flex; gap:26px;}
+  nav.links a{
+    color:#D7E2E9; font-size:14.5px; font-weight:500;
+    padding:6px 2px; border-bottom:2px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  nav.links a:hover{color:#fff; border-color:var(--sand);}
+  .nav-toggle{display:none; background:none; border:none; color:#fff; font-size:26px; cursor:pointer;}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    background: radial-gradient(ellipse at 30% 0%, #123954 0%, var(--navy) 45%, var(--navy-deep) 100%);
+    color:#fff;
+    padding:88px 0 64px;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%);
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.2fr 0.9fr; gap:40px; align-items:center;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--sand); font-size:13px; letter-spacing:.6px; font-weight:600;
+    margin-bottom:18px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--sand);}
+  .hero h1{
+    font-size:clamp(30px, 4.4vw, 46px);
+    font-weight:800;
+    line-height:1.35;
+    margin-bottom:18px;
+  }
+  .hero h1 span{color:var(--sand);}
+  .hero p.lead{
+    color:#C3D2DB; font-size:16.5px; max-width:520px; margin-bottom:30px;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:8px; font-weight:700; font-size:14.5px;
+    transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--sand); color:var(--navy-deep);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(201,166,113,.35);}
+  .btn-ghost{border:1px solid rgba(255,255,255,.35); color:#fff;}
+  .btn-ghost:hover{background:rgba(255,255,255,.08);}
+
+  /* GPS readout card */
+  .gps-card{
+    background:var(--navy-deep);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:14px;
+    padding:22px 24px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+  }
+  .gps-card .head{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+  .gps-card .head span{font-size:12px; color:var(--sand); letter-spacing:1px; font-weight:600;}
+  .gps-card .status{display:flex; align-items:center; gap:6px; font-size:11px; color:#7CD9A6;}
+  .gps-card .status i{width:6px;height:6px;border-radius:50%;background:#3FCB80; display:inline-block;}
+  .coord-line{display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px dashed rgba(255,255,255,.14); color:#EAF1F5;}
+  .coord-line:last-child{border-bottom:none;}
+  .coord-line .k{font-size:12.5px; color:#8FA6B3;}
+  .coord-line .v{font-size:15px; font-weight:600; color:#fff;}
+
+  /* ===== Section basics ===== */
+  section{padding:76px 0;}
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-tag{
+    font-size:12.5px; font-weight:700; color:var(--steel);
+    letter-spacing:.6px; margin-bottom:10px; display:flex; align-items:center; gap:8px;
+  }
+  .marker{
+    width:14px; height:14px; flex:none;
+  }
+  .section-head h2{font-size:clamp(24px,3vw,32px); font-weight:800; color:var(--navy-deep);}
+  .section-head p{color:var(--ink-soft); margin-top:12px; font-size:15.5px;}
+
+  /* ===== About ===== */
+  .about{background:var(--paper);}
+  .about-grid{display:grid; grid-template-columns:1fr 1.15fr; gap:52px; align-items:center;}
+  .about-media{
+    border-radius:14px; overflow:hidden; border:1px solid var(--paper-2);
+    box-shadow:0 18px 40px rgba(11,42,69,.12);
+  }
+  .about-facts{margin-top:26px; display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .fact{
+    background:#fff; border:1px solid var(--paper-2); border-radius:10px; padding:14px 16px;
+  }
+  .fact .num{font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--steel); font-size:13px;}
+  .fact .lbl{font-size:13.5px; color:var(--ink-soft); margin-top:4px;}
+
+  /* ===== Services ===== */
+  .services{background:var(--navy-deep); color:#fff;}
+  .services .section-head h2{color:#fff;}
+  .services .section-head p{color:#9FB2BE;}
+  .svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .svc-card{
+    background:#0F3450; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:26px 24px;
+    transition:border-color .2s, transform .2s;
+  }
+  .svc-card:hover{border-color:var(--sand); transform:translateY(-4px);}
+  .svc-card .marker{margin-bottom:16px;}
+  .svc-card h3{font-size:17.5px; margin-bottom:10px; color:#fff;}
+  .svc-card p{font-size:14px; color:#B7C6D0; margin:0;}
+
+  /* ===== Licenses gallery ===== */
+  .licenses{background:var(--paper);}
+  .lic-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .lic-card{
+    background:#fff; border:1px solid var(--paper-2); border-radius:12px; overflow:hidden;
+    box-shadow:0 6px 18px rgba(11,42,69,.06);
+    transition:box-shadow .2s, transform .2s;
+  }
+  .lic-card:hover{box-shadow:0 16px 32px rgba(11,42,69,.14); transform:translateY(-3px);}
+  .lic-thumb{
+    aspect-ratio:4/3; overflow:hidden; background:#eef1f3; position:relative;
+  }
+  .lic-thumb img{width:100%; height:100%; object-fit:cover; object-position:top;}
+  .lic-body{padding:15px 16px 18px;}
+  .lic-body h4{font-size:14.5px; font-weight:700; margin-bottom:6px; color:var(--navy-deep);}
+  .badge{
+    display:inline-flex; align-items:center; gap:6px; font-size:11.5px; font-weight:700;
+    color:var(--verified); background:#EAF4EE; padding:4px 10px; border-radius:20px;
+  }
+  .badge i{width:6px;height:6px;border-radius:50%;background:var(--verified);}
+
+  /* ===== Projects ===== */
+  .projects{background:#fff;}
+  .chip-list{display:flex; flex-wrap:wrap; gap:12px;}
+  .chip{
+    background:var(--paper); border:1px solid var(--paper-2); border-radius:9px;
+    padding:14px 18px; font-size:14.5px; color:var(--ink); flex:1 1 260px;
+    display:flex; align-items:flex-start; gap:10px;
+  }
+  .chip .marker{margin-top:3px; flex:none;}
+
+  /* ===== Facade band ===== */
+  .facade{position:relative; background:var(--navy-deep);}
+  .facade-inner{display:grid; grid-template-columns:0.9fr 1.1fr; align-items:center; gap:0;}
+  .facade-img{overflow:hidden;}
+  .facade-img img{width:100%; height:100%; object-fit:cover; min-height:340px;}
+  .facade-text{padding:56px 48px; color:#fff;}
+  .facade-text h2{color:#fff; font-size:26px; margin-bottom:16px;}
+  .facade-text p{color:#AFC0CB; font-size:15px;}
+
+  /* ===== Location ===== */
+  .location{background:var(--paper);}
+  .loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:stretch;}
+  .map-frame{
+    border-radius:14px; overflow:hidden; border:1px solid var(--paper-2);
+    box-shadow:0 18px 40px rgba(11,42,69,.12); min-height:360px;
+  }
+  .map-frame iframe{width:100%; height:100%; min-height:360px; border:0;}
+  .loc-card{
+    background:var(--navy-deep); color:#fff; border-radius:14px; padding:32px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .loc-item{display:flex; gap:14px; padding:14px 0; border-bottom:1px dashed rgba(255,255,255,.14);}
+  .loc-item:last-child{border-bottom:none;}
+  .loc-item .k{color:#8FA6B3; font-size:12.5px; min-width:90px;}
+  .loc-item .v{color:#fff; font-size:15px; font-weight:600;}
+  .loc-card .btn{margin-top:20px; align-self:flex-start;}
+
+  /* ===== Footer ===== */
+  footer{background:var(--navy-deep); color:#9FB2BE; padding:44px 0 26px; border-top:1px solid rgba(255,255,255,.08);}
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px;}
+  .foot-brand{display:flex; align-items:center; gap:12px;}
+  .foot-brand img{height:34px;}
+  .foot-brand .name{color:#fff; font-weight:700; font-size:15px;}
+  .foot-links{display:flex; gap:22px; flex-wrap:wrap;}
+  .foot-links a{font-size:14px; color:#B7C6D0;}
+  .foot-links a:hover{color:var(--sand);}
+  .foot-bottom{
+    margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,.08);
+    font-size:12.5px; color:#6E8896; text-align:center;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px){
+    nav.links{
+      position:absolute; top:64px; right:0; left:0; background:var(--navy-deep);
+      flex-direction:column; padding:16px 24px; gap:4px; display:none;
+      border-bottom:1px solid rgba(255,255,255,.1);
+    }
+    nav.links.open{display:flex;}
+    nav.links a{padding:10px 0;}
+    .nav-toggle{display:block;}
+    .hero-inner{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-facts{grid-template-columns:1fr 1fr;}
+    .svc-grid{grid-template-columns:1fr;}
+    .lic-grid{grid-template-columns:1fr 1fr;}
+    .facade-inner{grid-template-columns:1fr;}
+    .facade-text{padding:36px 24px;}
+    .loc-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width: 540px){
+    .lic-grid{grid-template-columns:1fr 1fr;}
+    section{padding:56px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <div class="brand">
+      <img src="assets/logo.png" alt="شعار مكتب المرسلات للاستشارات الهندسية">
+      <div class="brand-text">
+        <span class="name">المرسلات للاستشارات الهندسية</span>
+        <span class="sub">ALMURSALAT CONSULTING ENGINEERING</span>
+      </div>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة">☰</button>
+    <nav class="links" id="navLinks">
+      <a href="#about">نبذة</a>
+      <a href="#services">الخدمات</a>
+      <a href="#licenses">التراخيص والشهادات</a>
+      <a href="#projects">أعمالنا</a>
+      <a href="#location">الموقع</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> مكتب هندسي مرخّص — نجران، المملكة العربية السعودية</div>
+      <h1>من نقطة الرصد إلى <span>خارطة المشروع</span> — دقة مساحية تُبنى عليها القرارات</h1>
+      <p class="lead">مكتب المرسلات للاستشارات الهندسية يقدّم خدمات المساحة الأرضية، ومحطات الرصد والملاحة، وتعديل المخططات وبناء قواعد البيانات الجغرافية، بترخيص نهائي من الهيئة السعودية للمهندسين.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:0537530516">اتصل بالمكتب</a>
+        <a class="btn btn-ghost" href="#licenses">تصفّح التراخيص والشهادات</a>
+      </div>
+    </div>
+    <div class="gps-card">
+      <div class="head">
+        <span>GCP · بيانات نقطة المكتب</span>
+        <span class="status"><i></i>نشط وموثّق</span>
+      </div>
+      <div class="coord-line"><span class="k">خط العرض</span><span class="v mono">17.4646° N</span></div>
+      <div class="coord-line"><span class="k">خط الطول</span><span class="v mono">44.1135° E</span></div>
+      <div class="coord-line"><span class="k">الرمز البريدي</span><span class="v mono">66292</span></div>
+      <div class="coord-line"><span class="k">رقم الترخيص</span><span class="v mono">5100001498</span></div>
+      <div class="coord-line"><span class="k">السجل التجاري</span><span class="v mono">7026270103</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div>
+      <div class="about-media">
+        <img src="assets/profile.png" alt="مكتب المرسلات للاستشارات الهندسية - أعمال المساحة">
+      </div>
+    </div>
+    <div>
+      <div class="section-tag"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> نبذة عن المكتب</div>
+      <h2>خبرة ميدانية في رصد الأرض وتوثيقها هندسيًا</h2>
+      <p style="color:var(--ink-soft); font-size:15.5px; margin-top:16px;">
+        يعمل مكتب المرسلات للاستشارات الهندسية في نجران على تقديم خدمات المساحة والرصد الأرضي لعملاء من القطاعين الحكومي والخاص، بدءًا من رفع المواقع وتوقيع المخططات، وصولًا إلى بناء قواعد بيانات جغرافية دقيقة تدعم قرارات التصميم والتنفيذ.
+      </p>
+      <div class="about-facts">
+        <div class="fact"><div class="num mono">7026270103</div><div class="lbl">السجل التجاري — سجل نشط</div></div>
+        <div class="fact"><div class="num mono">5100001498</div><div class="lbl">ترخيص نهائي — الهيئة السعودية للمهندسين</div></div>
+        <div class="fact"><div class="num">هندسة مدنية</div><div class="lbl">هندسة معمارية</div></div>
+        <div class="fact"><div class="num">نجران</div><div class="lbl">حي الحضن — مقر المكتب</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag" style="color:var(--sand);"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#C9A671" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#C9A671"/></svg> الخدمات</div>
+      <h2>ما يقدّمه المكتب</h2>
+      <p>خدمات مساحية وهندسية متكاملة، من الرصد الميداني إلى تسليم البيانات الرقمية جاهزة للاستخدام.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#C9A671" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#C9A671"/></svg>
+        <h3>المساحة الأرضية</h3>
+        <p>رفع مساحي دقيق للأراضي والمواقع، وتوثيق الحدود والمعالم الطبيعية والصناعية.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#C9A671" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#C9A671"/></svg>
+        <h3>محطات الرصد والملاحة</h3>
+        <p>استخدام أجهزة Total Station ومحطات GPS وأجهزة الملاحة للحصول على إحداثيات عالية الدقة.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#C9A671" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#C9A671"/></svg>
+        <h3>تعديل المخططات وقواعد GIS</h3>
+        <p>تعديل المخططات السكنية وبناء قواعد بيانات جغرافية (GIS) منظمة وقابلة للتحديث.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="licenses" id="licenses">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> التراخيص والشهادات</div>
+      <h2>وثائق المكتب الرسمية</h2>
+      <p>جميع تراخيص المكتب وشهاداته سارية وصادرة عن الجهات الحكومية المختصة. اضغط على أي وثيقة لعرضها بحجمها الكامل.</p>
+    </div>
+    <div class="lic-grid">
+
+      <a class="lic-card" href="assets/practice-license.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/practice-license.png" alt="ترخيص مزاولة المهنة - الهيئة السعودية للمهندسين"></div>
+        <div class="lic-body">
+          <h4>ترخيص مزاولة المهنة — SCE</h4>
+          <span class="badge"><i></i>ترخيص نهائي ساري</span>
+        </div>
+      </a>
+
+      <a class="lic-card" href="assets/quality-standards.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/quality-standards.png" alt="شهادة استيفاء المعايير الفنية"></div>
+        <div class="lic-body">
+          <h4>شهادة استيفاء المعايير الفنية</h4>
+          <span class="badge"><i></i>معتمدة</span>
+        </div>
+      </a>
+
+      <a class="lic-card" href="assets/commercial-register.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/commercial-register.png" alt="شهادة السجل التجاري"></div>
+        <div class="lic-body">
+          <h4>شهادة السجل التجاري</h4>
+          <span class="badge"><i></i>سجل نشط</span>
+        </div>
+      </a>
+
+      <a class="lic-card" href="assets/activity-license.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/activity-license.png" alt="رخصة نشاط تجاري"></div>
+        <div class="lic-body">
+          <h4>رخصة نشاط تجاري</h4>
+          <span class="badge"><i></i>سارية</span>
+        </div>
+      </a>
+
+      <a class="lic-card" href="assets/building-license.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/building-license.png" alt="رخصة بناء"></div>
+        <div class="lic-body">
+          <h4>رخصة البناء</h4>
+          <span class="badge"><i></i>سارية</span>
+        </div>
+      </a>
+
+      <a class="lic-card" href="assets/safety-cert.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/safety-cert.png" alt="مشهد صيانة وسائل السلامة"></div>
+        <div class="lic-body">
+          <h4>صيانة وسائل السلامة</h4>
+          <span class="badge"><i></i>تمت الصيانة</span>
+        </div>
+      </a>
+
+      <a class="lic-card" href="assets/camera-cert.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/camera-cert.png" alt="شهادة استيفاء تركيب كاميرات المراقبة"></div>
+        <div class="lic-body">
+          <h4>استيفاء تركيب كاميرات المراقبة</h4>
+          <span class="badge"><i></i>مطابقة لوزارة الداخلية</span>
+        </div>
+      </a>
+
+      <a class="lic-card" href="assets/cert-completion-1.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/cert-completion-1.png" alt="شهادة إتمام دورة تأهيل المكاتب الهندسية"></div>
+        <div class="lic-body">
+          <h4>شهادة تأهيل — الإشراف على الرخص الإنشائية</h4>
+          <span class="badge"><i></i>أكاديمية تكامل</span>
+        </div>
+      </a>
+
+      <a class="lic-card" href="assets/cert-completion-2.png" target="_blank">
+        <div class="lic-thumb"><img src="assets/cert-completion-2.png" alt="شهادة إتمام دورة تأهيل المكاتب الهندسية لإصدار الرخص"></div>
+        <div class="lic-body">
+          <h4>شهادة تأهيل — إصدار الرخص الإنشائية</h4>
+          <span class="badge"><i></i>أكاديمية تكامل</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> أعمالنا</div>
+      <h2>من عملائنا وأعمالنا السابقة</h2>
+      <p>تعاون المكتب مع جهات حكومية وشركات قطاع خاص في أعمال حفر ومساحة وتعديل مخططات.</p>
+    </div>
+    <div class="chip-list">
+      <div class="chip"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> شركة الراجحي للاتصالات — أعمال حفر</div>
+      <div class="chip"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> شركة هيف للمقاولات — تنفيذ أعمال الحفر</div>
+      <div class="chip"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> شركة الوجية للمقاولات — تنفيذ أعمال الحفر</div>
+      <div class="chip"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> شركة الأسواق القابضة — أعمال مساحية لمول واجهة نجران ومول نجران بارك</div>
+      <div class="chip"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> شركة النهدي — أعمال مساحية بمستوصف النهدي بنجران</div>
+      <div class="chip"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> بلدية بئر عسكر — أعمال مساحية وتعديل المخططات السكنية وقواعد بيانات GIS</div>
+    </div>
+  </div>
+</section>
+
+<section class="facade">
+  <div class="facade-inner">
+    <div class="facade-img">
+      <img src="assets/office-facade.png" alt="واجهة مكتب المرسلات للاستشارات الهندسية - نجران">
+    </div>
+    <div class="facade-text">
+      <div class="section-tag" style="color:var(--sand);"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#C9A671" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#C9A671"/></svg> مقر المكتب</div>
+      <h2>واجهة المكتب في حي الحضن</h2>
+      <p>مقر المكتب في حي الحضن بنجران، جاهز لاستقبال العملاء وتقديم الاستشارات الهندسية والمساحية.</p>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag"><svg class="marker" viewBox="0 0 14 14"><polygon points="7,1 13,12 1,12" fill="none" stroke="#2C6E8C" stroke-width="1.4"/><circle cx="7" cy="9" r="1.4" fill="#2C6E8C"/></svg> الموقع</div>
+      <h2>كيف تصل إلينا</h2>
+      <p>موقع المكتب على الخريطة تقريبي لحي الحضن، ويمكن التواصل معنا للحصول على التوجيه الدقيق.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="map-frame">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=44.093%2C17.454%2C44.134%2C17.475&layer=mapnik&marker=17.4646%2C44.1135" loading="lazy" title="خريطة موقع المكتب"></iframe>
+      </div>
+      <div class="loc-card">
+        <div>
+          <div class="loc-item"><span class="k">العنوان</span><span class="v">حي الحضن، نجران، المملكة العربية السعودية 66292</span></div>
+          <div class="loc-item"><span class="k">الإحداثيات</span><span class="v mono">17.4646° N, 44.1135° E</span></div>
+          <div class="loc-item"><span class="k">الهاتف</span><span class="v mono">0537530516</span></div>
+          <div class="loc-item"><span class="k">البريد</span><span class="v mono" style="font-size:13px;">almursalat.eng@gmail.com</span></div>
+        </div>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=17.4646,44.1135" target="_blank">فتح في خرائط جوجل</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo.png" alt="شعار المرسلات">
+        <span class="name">المرسلات للاستشارات الهندسية</span>
+      </div>
+      <div class="foot-links">
+        <a href="tel:0537530516">0537530516</a>
+        <a href="mailto:almursalat.eng@gmail.com">almursalat.eng@gmail.com</a>
+        <a href="#licenses">التراخيص والشهادات</a>
+        <a href="#location">الموقع</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      حي الحضن، نجران، المملكة العربية السعودية — السجل التجاري 7026270103 — ترخيص هندسي 5100001498
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

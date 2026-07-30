@@ -41,7 +41,7 @@
     direction:ltr;
     unicode-bidi:isolate;
   }
-  img{max-width:100%;display:block;}
+  img{max-width:100%;display:block; -webkit-user-select:none; user-select:none; -webkit-user-drag:none; user-drag:none; pointer-events:auto;}
   a{color:inherit;text-decoration:none;}
   .container{
     max-width:1120px;
@@ -193,6 +193,7 @@
     background:#fff; border:1px solid var(--paper-2); border-radius:12px; overflow:hidden;
     box-shadow:0 6px 18px rgba(11,42,69,.06);
     transition:box-shadow .2s, transform .2s;
+    cursor:pointer;
   }
   .lic-card:hover{box-shadow:0 16px 32px rgba(11,42,69,.14); transform:translateY(-3px);}
   .lic-thumb{
@@ -256,6 +257,22 @@
   .foot-bottom{
     margin-top:30px; padding-top:20px; border-top:1px solid rgba(255,255,255,.08);
     font-size:12.5px; color:#6E8896; text-align:center;
+  }
+
+  /* ===== Lightbox ===== */
+  .lightbox{
+    position:fixed; inset:0; background:rgba(7,27,46,.92);
+    display:none; align-items:center; justify-content:center;
+    z-index:200; padding:30px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{
+    max-width:min(900px, 92vw); max-height:88vh; border-radius:8px;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
+  }
+  .lightbox-close{
+    position:absolute; top:22px; left:28px; color:#fff; font-size:30px;
+    background:none; border:none; cursor:pointer; line-height:1;
   }
 
   /* ===== Responsive ===== */
@@ -322,8 +339,8 @@
         <span>GCP · بيانات نقطة المكتب</span>
         <span class="status"><i></i>نشط وموثّق</span>
       </div>
-      <div class="coord-line"><span class="k">خط العرض</span><span class="v mono">17.4646° N</span></div>
-      <div class="coord-line"><span class="k">خط الطول</span><span class="v mono">44.1135° E</span></div>
+      <div class="coord-line"><span class="k">خط العرض</span><span class="v mono">17.455096° N</span></div>
+      <div class="coord-line"><span class="k">خط الطول</span><span class="v mono">44.104444° E</span></div>
       <div class="coord-line"><span class="k">الرمز البريدي</span><span class="v mono">66292</span></div>
       <div class="coord-line"><span class="k">رقم الترخيص</span><span class="v mono">5100001498</span></div>
       <div class="coord-line"><span class="k">السجل التجاري</span><span class="v mono">7026270103</span></div>
@@ -390,77 +407,77 @@
     </div>
     <div class="lic-grid">
 
-      <a class="lic-card" href="assets/practice-license.png" target="_blank">
+      <div class="lic-card" data-full="assets/practice-license.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/practice-license.png" alt="ترخيص مزاولة المهنة - الهيئة السعودية للمهندسين"></div>
         <div class="lic-body">
           <h4>ترخيص مزاولة المهنة — SCE</h4>
           <span class="badge"><i></i>ترخيص نهائي ساري</span>
         </div>
-      </a>
+      </div>
 
-      <a class="lic-card" href="assets/quality-standards.png" target="_blank">
+      <div class="lic-card" data-full="assets/quality-standards.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/quality-standards.png" alt="شهادة استيفاء المعايير الفنية"></div>
         <div class="lic-body">
           <h4>شهادة استيفاء المعايير الفنية</h4>
           <span class="badge"><i></i>معتمدة</span>
         </div>
-      </a>
+      </div>
 
-      <a class="lic-card" href="assets/commercial-register.png" target="_blank">
+      <div class="lic-card" data-full="assets/commercial-register.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/commercial-register.png" alt="شهادة السجل التجاري"></div>
         <div class="lic-body">
           <h4>شهادة السجل التجاري</h4>
           <span class="badge"><i></i>سجل نشط</span>
         </div>
-      </a>
+      </div>
 
-      <a class="lic-card" href="assets/activity-license.png" target="_blank">
+      <div class="lic-card" data-full="assets/activity-license.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/activity-license.png" alt="رخصة نشاط تجاري"></div>
         <div class="lic-body">
           <h4>رخصة نشاط تجاري</h4>
           <span class="badge"><i></i>سارية</span>
         </div>
-      </a>
+      </div>
 
-      <a class="lic-card" href="assets/building-license.png" target="_blank">
+      <div class="lic-card" data-full="assets/building-license.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/building-license.png" alt="رخصة بناء"></div>
         <div class="lic-body">
           <h4>رخصة البناء</h4>
           <span class="badge"><i></i>سارية</span>
         </div>
-      </a>
+      </div>
 
-      <a class="lic-card" href="assets/safety-cert.png" target="_blank">
+      <div class="lic-card" data-full="assets/safety-cert.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/safety-cert.png" alt="مشهد صيانة وسائل السلامة"></div>
         <div class="lic-body">
           <h4>صيانة وسائل السلامة</h4>
           <span class="badge"><i></i>تمت الصيانة</span>
         </div>
-      </a>
+      </div>
 
-      <a class="lic-card" href="assets/camera-cert.png" target="_blank">
+      <div class="lic-card" data-full="assets/camera-cert.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/camera-cert.png" alt="شهادة استيفاء تركيب كاميرات المراقبة"></div>
         <div class="lic-body">
           <h4>استيفاء تركيب كاميرات المراقبة</h4>
           <span class="badge"><i></i>مطابقة لوزارة الداخلية</span>
         </div>
-      </a>
+      </div>
 
-      <a class="lic-card" href="assets/cert-completion-1.png" target="_blank">
+      <div class="lic-card" data-full="assets/cert-completion-1.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/cert-completion-1.png" alt="شهادة إتمام دورة تأهيل المكاتب الهندسية"></div>
         <div class="lic-body">
           <h4>شهادة تأهيل — الإشراف على الرخص الإنشائية</h4>
           <span class="badge"><i></i>أكاديمية تكامل</span>
         </div>
-      </a>
+      </div>
 
-      <a class="lic-card" href="assets/cert-completion-2.png" target="_blank">
+      <div class="lic-card" data-full="assets/cert-completion-2.png" role="button" tabindex="0">
         <div class="lic-thumb"><img src="assets/cert-completion-2.png" alt="شهادة إتمام دورة تأهيل المكاتب الهندسية لإصدار الرخص"></div>
         <div class="lic-body">
           <h4>شهادة تأهيل — إصدار الرخص الإنشائية</h4>
           <span class="badge"><i></i>أكاديمية تكامل</span>
         </div>
-      </a>
+      </div>
 
     </div>
   </div>
@@ -506,16 +523,16 @@
     </div>
     <div class="loc-grid">
       <div class="map-frame">
-        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=44.093%2C17.454%2C44.134%2C17.475&layer=mapnik&marker=17.4646%2C44.1135" loading="lazy" title="خريطة موقع المكتب"></iframe>
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=44.084%2C17.445%2C44.125%2C17.466&layer=mapnik&marker=17.455096%2C44.104444" loading="lazy" title="خريطة موقع المكتب"></iframe>
       </div>
       <div class="loc-card">
         <div>
           <div class="loc-item"><span class="k">العنوان</span><span class="v">حي الحضن، نجران، المملكة العربية السعودية 66292</span></div>
-          <div class="loc-item"><span class="k">الإحداثيات</span><span class="v mono">17.4646° N, 44.1135° E</span></div>
+          <div class="loc-item"><span class="k">الإحداثيات</span><span class="v mono">17.455096° N, 44.104444° E</span></div>
           <div class="loc-item"><span class="k">الهاتف</span><span class="v mono">0537530516</span></div>
           <div class="loc-item"><span class="k">البريد</span><span class="v mono" style="font-size:13px;">almursalat.eng@gmail.com</span></div>
         </div>
-        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=17.4646,44.1135" target="_blank">فتح في خرائط جوجل</a>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=17.455096,44.104444" target="_blank">فتح في خرائط جوجل</a>
       </div>
     </div>
   </div>
@@ -541,9 +558,51 @@
   </div>
 </footer>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="إغلاق">×</button>
+  <img id="lightboxImg" src="" alt="عرض الوثيقة بحجمها الكامل">
+</div>
+
 <script>
   document.getElementById('navToggle').addEventListener('click', function(){
     document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  /* ---- Lightbox for licenses/certificates (view only, no direct file link) ---- */
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+
+  document.querySelectorAll('.lic-card').forEach(function(card){
+    function openIt(){
+      lightboxImg.setAttribute('src', card.getAttribute('data-full'));
+      lightbox.classList.add('open');
+    }
+    card.addEventListener('click', openIt);
+    card.addEventListener('keypress', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openIt(); }
+    });
+  });
+
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    lightboxImg.setAttribute('src', '');
+  }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){
+    if(e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  /* ---- Basic deterrents against easy image saving ---- */
+  /* Note: these only discourage casual saving; they cannot fully block
+     a determined user (browser dev tools can always access page assets). */
+  document.addEventListener('contextmenu', function(e){
+    if(e.target.tagName === 'IMG'){ e.preventDefault(); }
+  });
+  document.addEventListener('dragstart', function(e){
+    if(e.target.tagName === 'IMG'){ e.preventDefault(); }
   });
 </script>
 </body>
